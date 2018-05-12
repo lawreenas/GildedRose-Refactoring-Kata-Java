@@ -1,18 +1,16 @@
-package com.gildedrose.model;
+package com.gildedrose.domain;
 
 import com.gildedrose.GildedRose;
-import com.gildedrose.Item;
-import com.gildedrose.ItemType;
 
 import static java.lang.Math.min;
 
 /**
  * @author L.Remeika
  */
-public class BackstagePass extends GenericItem {
+public class BackstagePassItem extends GenericItemItem {
 
-    public BackstagePass(String name, int sellIn, int quality) {
-        super(ItemType.BACKSTAGE_PASS.name, sellIn, quality);
+    public BackstagePassItem(String name, int sellIn, int quality) {
+        super(name, sellIn, quality);
     }
 
     @Override

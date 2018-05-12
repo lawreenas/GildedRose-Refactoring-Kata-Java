@@ -1,7 +1,7 @@
 package com.gildedrose;
 
-import com.gildedrose.model.BackstagePass;
-import com.gildedrose.model.GenericItem;
+import com.gildedrose.domain.GenericItemItem;
+import com.gildedrose.domain.SulfurasItem;
 
 import java.util.Arrays;
 
@@ -20,11 +20,10 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-
         Arrays.stream(items)
-                .filter(item -> !ItemType.SULFURAS.name.equals(item.name))
+                .filter(item -> !(item instanceof SulfurasItem))
                 .map(item -> updateItemSellInDays(item))
-                .forEach(item -> ((GenericItem) item).updateQuality());
+                .forEach(item -> ((GenericItemItem) item).updateQuality());
 
     }
 
