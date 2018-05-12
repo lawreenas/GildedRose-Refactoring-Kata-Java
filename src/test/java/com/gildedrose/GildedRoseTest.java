@@ -2,6 +2,10 @@ package com.gildedrose;
 
 import static org.junit.Assert.*;
 
+import com.gildedrose.model.AgedBrie;
+import com.gildedrose.model.BackstagePass;
+import com.gildedrose.model.GenericItem;
+import com.gildedrose.model.Sulfuras;
 import org.junit.Test;
 
 /**
@@ -24,7 +28,7 @@ public class GildedRoseTest {
     @Test
     public void test_Quality_Should_Degrade_Twice_As_Fast_After_SellBy() {
         // Given
-        Item[] items = new Item[] { new Item("Elixir of the Mongoose", 0, 10) };
+        Item[] items = new Item[] { new GenericItem("Elixir of the Mongoose", 0, 10) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -40,7 +44,7 @@ public class GildedRoseTest {
     @Test
     public void test_Quality_Should_Never_Be_Negative() {
         // Given
-        Item[] items = new Item[] { new Item("Elixir of the Mongoose", -1, 0) };
+        Item[] items = new Item[] { new GenericItem("Elixir of the Mongoose", -1, 0) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -55,7 +59,7 @@ public class GildedRoseTest {
     @Test
     public void test_AgedBrie_Should_Increase_In_Quality() {
         // Given
-        Item[] items = new Item[] { new Item("Aged Brie", 10, 0) };
+        Item[] items = new Item[] { new AgedBrie("Aged Brie", 10, 0) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -69,7 +73,7 @@ public class GildedRoseTest {
     @Test
     public void test_BackstagePasses_Should_Increase_In_Quality_By_2_When_Sell_In_Less_Than_10() {
         // Given
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 5) };
+        Item[] items = new Item[] { new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 10, 5) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -84,8 +88,8 @@ public class GildedRoseTest {
     public void test_Quality_Never_Increase_Above_50() {
         // Given
         Item[] items = new Item[] {
-                new Item("Aged Brie", 10, 50),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 1, 49)
+                new AgedBrie("Aged Brie", 10, 50),
+                new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 1, 49)
         };
         GildedRose app = new GildedRose(items);
 
@@ -100,7 +104,7 @@ public class GildedRoseTest {
     @Test
     public void test_Backstage_Passes_Should_Increase_In_Quality_By_3_When_Sell_In_Less_Than_5() {
         // Given
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 4, 5) };
+        Item[] items = new Item[] { new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 4, 5) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -115,7 +119,7 @@ public class GildedRoseTest {
     @Test
     public void test_Backstage_Passes_Quality_Is_0_After_Concert() {
         // Given
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
+        Item[] items = new Item[] { new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -129,7 +133,7 @@ public class GildedRoseTest {
     @Test
     public void test_Sulfuras_Should_Not_Decrease_In_Quality() {
         // Given
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 80) };
+        Item[] items = new Item[] { new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80) };
         GildedRose app = new GildedRose(items);
 
         // When
