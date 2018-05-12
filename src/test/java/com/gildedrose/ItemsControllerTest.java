@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,5 +40,33 @@ public class ItemsControllerTest {
                 .andExpect(jsonPath("[0].sellIn").value(10))
                 .andExpect(jsonPath("[0].quality").value(20));
     }
+
+    @Test
+    public void getItems_ShouldReturnEmptyList() throws Exception {
+        given(itemService.getItems()).willReturn(Arrays.asList());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/items"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getItem_ShouldReturnItemDetails() throws Exception {
+        given(itemService.getItem(anyInt())).willReturn(new Item("TestDetails", 15, 25));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/items/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("TestDetails"))
+                .andExpect(jsonPath("sellIn").value(15))
+                .andExpect(jsonPath("quality").value(25));
+    }
+
+    @Test
+    public void getItem_NotFound() throws Exception {
+        given(itemService.getItem(anyInt())).willThrow(new ItemNotFoundException());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/items/144"))
+                .andExpect(status().isNotFound());
+    }
+
 
 }

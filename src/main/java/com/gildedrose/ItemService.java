@@ -11,4 +11,7 @@ public class ItemService {
         return null;
     }
 
+    public Item getItem(Integer id) {
+        return null;
+    }
 }
