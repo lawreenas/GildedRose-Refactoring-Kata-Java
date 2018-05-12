@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -33,7 +34,10 @@ public class ItemsControllerTest {
         given(itemService.getItems()).willReturn(Arrays.asList(new Item("Test", 10, 20)));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/items"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("[0].name").value("Test"))
+                .andExpect(jsonPath("[0].sellIn").value(10))
+                .andExpect(jsonPath("[0].quality").value(20));
     }
 
 }
