@@ -1,7 +1,5 @@
 package com.gildedrose;
 
-import java.util.Arrays;
-
 class GildedRose {
     Item[] items;
 
@@ -34,14 +32,15 @@ class GildedRose {
             }
 
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                switch (items[i].name) {
+                    case "Aged Brie":
+                        items[i] = increaseItemQuality(items[i]);
+                        return;
+                    case "Backstage passes to a TAFKAL80ETC concert":
+                        items[i].quality = 0;
+                        return;
+                    default:
                         items[i] = decreaseItemQuality(items[i]);
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    items[i] = increaseItemQuality(items[i]);
                 }
             }
         }
