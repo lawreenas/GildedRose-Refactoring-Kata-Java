@@ -43,8 +43,14 @@ public class ItemRepository {
      * @return
      */
     public Item findById(String uuid) {
-        Item result = Arrays.stream(items).filter(item -> ((GenericItem) item).id.equals(uuid)).findFirst().get();
-        if (result == null) { throw new ItemNotFoundException(); }
-        return result;
+        List<Item> result = Arrays.stream(items)
+                .filter(item -> ((GenericItem) item).id.equals(uuid))
+                .limit(1)
+                .collect(Collectors.toList());
+
+        if (result.isEmpty()) {
+            throw new ItemNotFoundException();
+        }
+        return result.get(0);
     }
 }
