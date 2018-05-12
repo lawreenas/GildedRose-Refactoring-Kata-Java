@@ -11,6 +11,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
 /**
@@ -40,9 +41,9 @@ public class ItemServiceTest {
 
     @Test
     public void getItem_ShouldReturnItemDetails() {
-        given(itemRepository.findById(anyInt())).willReturn(new Item("Item 10", 210, 430));
+        given(itemRepository.findById(anyString())).willReturn(new Item("Item 10", 210, 430));
 
-        Item item = itemService.getItem(144);
+        Item item = itemService.getItem("144");
 
         assertEquals(item.name, "Item 10");
         assertEquals(item.sellIn, 210);

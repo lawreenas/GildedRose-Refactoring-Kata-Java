@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -51,7 +52,7 @@ public class ItemsControllerTest {
 
     @Test
     public void getItem_ShouldReturnItemDetails() throws Exception {
-        given(itemService.getItem(anyInt())).willReturn(new Item("TestDetails", 15, 25));
+        given(itemService.getItem(anyString())).willReturn(new Item("TestDetails", 15, 25));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/items/1"))
                 .andExpect(status().isOk())
@@ -62,7 +63,7 @@ public class ItemsControllerTest {
 
     @Test
     public void getItem_NotFound() throws Exception {
-        given(itemService.getItem(anyInt())).willThrow(new ItemNotFoundException());
+        given(itemService.getItem(anyString())).willThrow(new ItemNotFoundException());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/items/144"))
                 .andExpect(status().isNotFound());

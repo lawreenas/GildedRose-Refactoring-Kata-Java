@@ -20,7 +20,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item getItem(Integer id) {
-        return itemRepository.findById(id);
+    public Item getItem(String uuid) {
+        return itemRepository.findById(uuid);
     }
 }

@@ -24,8 +24,8 @@ public class ItemsController {
     }
 
     @GetMapping("/items/{id}")
-    public Item getItems(@PathVariable("id") Integer id) {
-        return itemService.getItem(id);
+    public Item getItems(@PathVariable("id") String uuid) {
+        return itemService.getItem(uuid);
     }
 
     @ExceptionHandler
