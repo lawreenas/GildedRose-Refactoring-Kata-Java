@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.domain.GenericItemItem;
+import com.gildedrose.domain.GenericItem;
 import com.gildedrose.domain.SulfurasItem;
 
 import java.util.Arrays;
@@ -23,7 +23,7 @@ public class GildedRose {
         Arrays.stream(items)
                 .filter(item -> !(item instanceof SulfurasItem))
                 .map(item -> updateItemSellInDays(item))
-                .forEach(item -> ((GenericItemItem) item).updateQuality());
+                .forEach(item -> ((GenericItem) item).updateQuality());
 
     }
 

@@ -25,7 +25,7 @@ public class GildedRoseTest {
     @Test
     public void test_Quality_Should_Degrade_Twice_As_Fast_After_SellBy() {
         // Given
-        Item[] items = new Item[] { new GenericItemItem("Elixir of the Mongoose", 0, 10) };
+        Item[] items = new Item[] { new GenericItem("Elixir of the Mongoose", 0, 10) };
         GildedRose app = new GildedRose(items);
 
         // When
@@ -41,7 +41,7 @@ public class GildedRoseTest {
     @Test
     public void test_Quality_Should_Never_Be_Negative() {
         // Given
-        Item[] items = new Item[] { new GenericItemItem("Elixir of the Mongoose", -1, 0) };
+        Item[] items = new Item[] { new GenericItem("Elixir of the Mongoose", -1, 0) };
         GildedRose app = new GildedRose(items);
 
         // When

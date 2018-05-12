@@ -7,7 +7,7 @@ import static java.lang.Math.min;
 /**
  * @author L.Remeika
  */
-public class AgedBrieItem extends GenericItemItem {
+public class AgedBrieItem extends GenericItem {
 
     public AgedBrieItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);

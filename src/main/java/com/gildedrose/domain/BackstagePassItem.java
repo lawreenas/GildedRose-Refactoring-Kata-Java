@@ -7,7 +7,7 @@ import static java.lang.Math.min;
 /**
  * @author L.Remeika
  */
-public class BackstagePassItem extends GenericItemItem {
+public class BackstagePassItem extends GenericItem {
 
     public BackstagePassItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);

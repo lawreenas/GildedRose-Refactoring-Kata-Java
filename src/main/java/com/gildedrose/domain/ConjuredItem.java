@@ -7,7 +7,7 @@ import static java.lang.Math.max;
 /**
  * @author L.Remeika
  */
-public class ConjuredItem extends GenericItemItem {
+public class ConjuredItem extends GenericItem {
 
     public ConjuredItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
