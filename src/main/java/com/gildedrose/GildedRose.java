@@ -23,17 +23,16 @@ class GildedRose {
                     increaseItemQuality(item, 1);
                     return;
                 case "Backstage passes to a TAFKAL80ETC concert":
-
-                    increaseItemQuality(item, 1);
-
-                    if (item.sellIn < 11) {
-                        increaseItemQuality(item, 1);
-                    }
-                    if (item.sellIn < 6) {
-                        increaseItemQuality(item,1);
-                    }
                     if (item.sellIn < 0) {
                         item.quality = 0;
+                    }
+                    if (item.sellIn <= 5) {
+                        increaseItemQuality(item,3);
+                        return;
+                    }
+                    if (item.sellIn <= 10) {
+                        increaseItemQuality(item, 2);
+                        return;
                     }
                     return;
                 case "Sulfuras, Hand of Ragnaros":
