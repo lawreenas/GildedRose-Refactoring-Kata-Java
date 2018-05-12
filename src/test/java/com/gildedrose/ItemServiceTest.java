@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.domain.Item;
+import com.gildedrose.persist.ItemRepository;
+import com.gildedrose.web.ItemService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 

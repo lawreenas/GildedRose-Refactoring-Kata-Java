@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.domain.Item;
+import com.gildedrose.exceptions.ItemNotFoundException;
+import com.gildedrose.web.ItemService;
 import com.gildedrose.web.ItemsController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

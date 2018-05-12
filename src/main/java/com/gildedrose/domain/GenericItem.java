@@ -1,7 +1,6 @@
 package com.gildedrose.domain;
 
 import com.gildedrose.GildedRose;
-import com.gildedrose.Item;
 
 import java.util.UUID;
 

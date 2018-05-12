@@ -1,8 +1,7 @@
 package com.gildedrose.web;
 
-import com.gildedrose.Item;
-import com.gildedrose.ItemNotFoundException;
-import com.gildedrose.ItemService;
+import com.gildedrose.domain.Item;
+import com.gildedrose.exceptions.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

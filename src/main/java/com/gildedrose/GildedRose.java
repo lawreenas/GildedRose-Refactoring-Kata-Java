@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.domain.GenericItem;
+import com.gildedrose.domain.Item;
 import com.gildedrose.domain.SulfurasItem;
 
 import java.util.Arrays;

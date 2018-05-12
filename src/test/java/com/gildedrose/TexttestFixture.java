@@ -1,9 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.domain.AgedBrieItem;
-import com.gildedrose.domain.BackstagePassItem;
-import com.gildedrose.domain.GenericItem;
-import com.gildedrose.domain.SulfurasItem;
+import com.gildedrose.domain.*;
 
 public class TexttestFixture {
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
-package com.gildedrose;
+package com.gildedrose.web;
 
+import com.gildedrose.domain.Item;
+import com.gildedrose.persist.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
