@@ -3,6 +3,9 @@ package com.gildedrose;
 import java.util.Arrays;
 
 class GildedRose {
+    public static final int ITEM_QUALITY_MAX = 50;
+    public static final int ITEM_QUALITY_MIN = 0;
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -15,50 +18,50 @@ class GildedRose {
 
             item = decreaseItemSellIn(item);
 
-//            if (item.sellIn < 0) {
-                switch (item.name) {
-                    case "Aged Brie":
-                        increaseItemQuality(item, 1);
-                        return;
-                    case "Backstage passes to a TAFKAL80ETC concert":
-                        increaseItemQuality(item, 1);
+            switch (item.name) {
+                case "Aged Brie":
+                    increaseItemQuality(item, 1);
+                    return;
+                case "Backstage passes to a TAFKAL80ETC concert":
 
-                        if (item.sellIn < 11) {
-                            increaseItemQuality(item, 1);
-                        }
-                        if (item.sellIn < 6) {
-                            increaseItemQuality(item,1);
-                        }
-                        if (item.sellIn < 0) {
-                            item.quality = 0;
-                        }
-                        return;
-                    default:
-                        if (item.sellIn < 0) {
-                            decreaseItemQuality(item, 1);
-                        }
+                    increaseItemQuality(item, 1);
+
+                    if (item.sellIn < 11) {
+                        increaseItemQuality(item, 1);
+                    }
+                    if (item.sellIn < 6) {
+                        increaseItemQuality(item,1);
+                    }
+                    if (item.sellIn < 0) {
+                        item.quality = 0;
+                    }
+                    return;
+                case "Sulfuras, Hand of Ragnaros":
+                    return;
+                default:
+                    if (item.sellIn < 0) {
+                        decreaseItemQuality(item, 2);
+                    } else {
                         decreaseItemQuality(item, 1);
-                }
-//            }
+                    }
+            }
         });
     }
 
 
     private Item decreaseItemSellIn(Item item) {
-        if ("Sulfuras, Hand of Ragnaros".equals(item.name)) return item;
+        if (equals(item.name)) return item;
         item.sellIn -= 1;
         return item;
     }
 
     private Item increaseItemQuality(Item item, int increaseBy) {
-        item.quality = Math.min(item.quality + increaseBy, 50);
+        item.quality = Math.min(item.quality + increaseBy, ITEM_QUALITY_MAX);
         return item;
     }
 
     private Item decreaseItemQuality(Item item, int decreaseBy) {
-        // Sulfuras does not decrease in quality
-        if ("Sulfuras, Hand of Ragnaros".equals(item.name)) return item;
-        item.quality = Math.max(item.quality - decreaseBy, 0);
+        item.quality = Math.max(item.quality - decreaseBy, ITEM_QUALITY_MIN);
         return item;
     }
 
