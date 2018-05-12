@@ -50,7 +50,6 @@ class GildedRose {
 
 
     private Item decreaseItemSellIn(Item item) {
-        if (equals(item.name)) return item;
         item.sellIn -= 1;
         return item;
     }
