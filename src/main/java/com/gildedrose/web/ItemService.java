@@ -1,6 +1,7 @@
 package com.gildedrose.web;
 
 import com.gildedrose.domain.Item;
+import com.gildedrose.exceptions.ItemNotFoundException;
 import com.gildedrose.persist.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,10 @@ public class ItemService {
     }
 
     public Item getItem(String uuid) {
-        return itemRepository.findById(uuid);
+        Item item = itemRepository.findById(uuid);
+        if (item == null) {
+            throw new ItemNotFoundException();
+        }
+        return item;
     }
 }

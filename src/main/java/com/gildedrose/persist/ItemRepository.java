@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -43,14 +44,12 @@ public class ItemRepository {
      * @return
      */
     public Item findById(String uuid) {
-        List<Item> result = Arrays.stream(items)
-                .filter(item -> ((GenericItem) item).id.equals(uuid))
-                .limit(1)
-                .collect(Collectors.toList());
-
-        if (result.isEmpty()) {
-            throw new ItemNotFoundException();
+        try {
+            return Arrays.stream(items)
+                    .filter(item -> ((GenericItem) item).id.equals(uuid))
+                    .findFirst().get();
+        } catch (NoSuchElementException e) {
+            return null;
         }
-        return result.get(0);
     }
 }

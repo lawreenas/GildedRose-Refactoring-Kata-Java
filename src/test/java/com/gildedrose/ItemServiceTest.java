@@ -1,8 +1,10 @@
 package com.gildedrose;
 
 import com.gildedrose.domain.Item;
+import com.gildedrose.exceptions.ItemNotFoundException;
 import com.gildedrose.persist.ItemRepository;
 import com.gildedrose.web.ItemService;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,4 +53,18 @@ public class ItemServiceTest {
         assertEquals(item.sellIn, 210);
         assertEquals(item.quality, 430);
     }
+
+    @Test
+    public void getItem_Should404() {
+        given(itemRepository.findById(anyString())).willReturn(null);
+
+        try {
+            Item item = itemService.getItem("144");
+        } catch (ItemNotFoundException e) {
+            return;
+        }
+        TestCase.fail();
+
+    }
+
 }
