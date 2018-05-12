@@ -3,7 +3,10 @@ package com.gildedrose;
 import java.util.Arrays;
 
 class GildedRose {
+
+    /* Maximum quality an item can have (does not apply SULFURAS) */
     public static final int ITEM_QUALITY_MAX = 50;
+    /* Minimum quality of an item */
     public static final int ITEM_QUALITY_MIN = 0;
 
     Item[] items;
@@ -14,9 +17,10 @@ class GildedRose {
 
     public void updateQuality() {
 
-        Arrays.stream(items).forEach(item -> {
-
-            item = decreaseItemSellIn(item);
+        Arrays.stream(items)
+                .filter(item -> !ItemType.SULFURAS.name.equals(item.name))
+                .map(item -> updateItemSellInDays(item))
+                .forEach(item -> {
 
             switch (item.name) {
                 case "Aged Brie":
@@ -36,8 +40,6 @@ class GildedRose {
                         return;
                     }
                     return;
-                case "Sulfuras, Hand of Ragnaros":
-                    return;
                 default:
                     if (item.sellIn < 0) {
                         decreaseItemQuality(item, 2);
@@ -48,8 +50,7 @@ class GildedRose {
         });
     }
 
-
-    private Item decreaseItemSellIn(Item item) {
+    private Item updateItemSellInDays(Item item) {
         item.sellIn -= 1;
         return item;
     }
