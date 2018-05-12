@@ -2,10 +2,7 @@ package com.gildedrose;
 
 import static org.junit.Assert.*;
 
-import com.gildedrose.model.AgedBrie;
-import com.gildedrose.model.BackstagePass;
-import com.gildedrose.model.GenericItem;
-import com.gildedrose.model.Sulfuras;
+import com.gildedrose.model.*;
 import org.junit.Test;
 
 /**
@@ -142,7 +139,20 @@ public class GildedRoseTest {
         // Then
         Item item = app.items[0];
         assertEquals(80, item.quality);
+    }
 
+    @Test
+    public void test_Conjured_Should_Degrade_Twice_As_Fast() {
+        // Given
+        Item[] items = new Item[] { new Conjured("Conjured Mana Cake", 10, 40) };
+        GildedRose app = new GildedRose(items);
+
+        // When
+        app.updateQuality();
+
+        // Then
+        Item item = app.items[0];
+        assertEquals(38, item.quality);
     }
 
 }
