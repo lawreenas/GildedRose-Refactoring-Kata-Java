@@ -13,56 +13,52 @@ class GildedRose {
 
         Arrays.stream(items).forEach(item -> {
 
-            item = updateItemSellIn(item);
+            item = decreaseItemSellIn(item);
 
-            if (!item.name.equals("Aged Brie")
-                    && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                decreaseItemQuality(item);
-            } else {
-
-                increaseItemQuality(item);
-
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.sellIn < 11) {
-                        increaseItemQuality(item);
-                    }
-
-                    if (item.sellIn < 6) {
-                        increaseItemQuality(item);
-                    }
-                }
-            }
-
-            if (item.sellIn < 0) {
+//            if (item.sellIn < 0) {
                 switch (item.name) {
                     case "Aged Brie":
-                        increaseItemQuality(item);
+                        increaseItemQuality(item, 1);
                         return;
                     case "Backstage passes to a TAFKAL80ETC concert":
-                        item.quality = 0;
+                        increaseItemQuality(item, 1);
+
+                        if (item.sellIn < 11) {
+                            increaseItemQuality(item, 1);
+                        }
+                        if (item.sellIn < 6) {
+                            increaseItemQuality(item,1);
+                        }
+                        if (item.sellIn < 0) {
+                            item.quality = 0;
+                        }
                         return;
                     default:
-                        decreaseItemQuality(item);
+                        if (item.sellIn < 0) {
+                            decreaseItemQuality(item, 1);
+                        }
+                        decreaseItemQuality(item, 1);
                 }
-            }
+//            }
         });
     }
 
-    private Item updateItemSellIn(Item item) {
+
+    private Item decreaseItemSellIn(Item item) {
         if ("Sulfuras, Hand of Ragnaros".equals(item.name)) return item;
         item.sellIn -= 1;
         return item;
     }
 
-    private Item increaseItemQuality(Item item) {
-        item.quality = Math.min(item.quality + 1, 50);
+    private Item increaseItemQuality(Item item, int increaseBy) {
+        item.quality = Math.min(item.quality + increaseBy, 50);
         return item;
     }
 
-    private Item decreaseItemQuality(Item item) {
+    private Item decreaseItemQuality(Item item, int decreaseBy) {
         // Sulfuras does not decrease in quality
         if ("Sulfuras, Hand of Ragnaros".equals(item.name)) return item;
-        item.quality = Math.max(item.quality - 1, 0);
+        item.quality = Math.max(item.quality - decreaseBy, 0);
         return item;
     }
 
