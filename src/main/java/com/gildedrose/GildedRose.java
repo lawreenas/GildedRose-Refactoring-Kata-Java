@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
     Item[] items;
 
@@ -9,41 +11,41 @@ class GildedRose {
 
     public void updateQuality() {
 
-        for (int i = 0; i < items.length; i++) {
+        Arrays.stream(items).forEach(item -> {
 
-            items[i] = updateItemSellIn(items[i]);
+            item = updateItemSellIn(item);
 
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                items[i] = decreaseItemQuality(items[i]);
+            if (!item.name.equals("Aged Brie")
+                    && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                decreaseItemQuality(item);
             } else {
 
-                items[i] = increaseItemQuality(items[i]);
+                increaseItemQuality(item);
 
-                if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (items[i].sellIn < 11) {
-                        items[i] = increaseItemQuality(items[i]);
+                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (item.sellIn < 11) {
+                        increaseItemQuality(item);
                     }
 
-                    if (items[i].sellIn < 6) {
-                        items[i] = increaseItemQuality(items[i]);
+                    if (item.sellIn < 6) {
+                        increaseItemQuality(item);
                     }
                 }
             }
 
-            if (items[i].sellIn < 0) {
-                switch (items[i].name) {
+            if (item.sellIn < 0) {
+                switch (item.name) {
                     case "Aged Brie":
-                        items[i] = increaseItemQuality(items[i]);
+                        increaseItemQuality(item);
                         return;
                     case "Backstage passes to a TAFKAL80ETC concert":
-                        items[i].quality = 0;
+                        item.quality = 0;
                         return;
                     default:
-                        items[i] = decreaseItemQuality(items[i]);
+                        decreaseItemQuality(item);
                 }
             }
-        }
+        });
     }
 
     private Item updateItemSellIn(Item item) {
