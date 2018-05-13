@@ -12,17 +12,18 @@ import java.util.List;
  * @author L.Remeika
  */
 @RestController
+@RequestMapping("/v1/items")
 public class ItemsController {
 
     @Autowired
     ItemService itemService;
 
-    @GetMapping("/items")
+    @GetMapping()
     public List<Item> getItems() {
        return itemService.getItems();
     }
 
-    @GetMapping("/items/{id}")
+    @GetMapping("/{id}")
     public Item getItems(@PathVariable("id") String uuid) {
         return itemService.getItem(uuid);
     }
