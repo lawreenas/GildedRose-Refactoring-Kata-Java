@@ -9,11 +9,8 @@ import java.util.UUID;
  */
 public class GenericItem extends Item {
 
-    public final String id;
-
     public GenericItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
-        id = UUID.randomUUID().toString();
     }
 
     public void updateQuality() {
